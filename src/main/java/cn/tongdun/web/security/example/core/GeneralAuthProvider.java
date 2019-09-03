@@ -22,27 +22,15 @@ public class GeneralAuthProvider implements AuthenticationProvider {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GeneralAuthProvider.class);
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
-
     private PasswordEncoder passwordEncoder = new Pbkdf2PasswordEncoder();
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         final String loginId = (String) authentication.getPrincipal();
         final String rawPassword = (String) authentication.getCredentials();
-
         try {
-            UserInfoEntity userInfo = this.userInfoService.queryUser(loginId);
 
-            if (!passwordEncoder.matches(rawPassword, userInfo.getPassword())) {
-                throw new AuthenticationCredentialsNotFoundException("invalid username or password");
-            }
-
-            LoginUserDetails user = new LoginUserDetails(loginId, userInfo.getCnName(), "", Lists.newArrayList());
-            user.setEmail(userInfo.getMail());
-            user.setAppkey(userInfo.getAppkey());
-            user.setTenantCode(userInfo.getTenantCode());
+            LoginUserDetails user = new LoginUserDetails(loginId, loginId, "", Lists.newArrayList());
 
             SimpleGrantedAuthority authority = new SimpleGrantedAuthority("user");
             UsernamePasswordAuthenticationToken ua = new UsernamePasswordAuthenticationToken(
