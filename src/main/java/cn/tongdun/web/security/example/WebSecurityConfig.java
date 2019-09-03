@@ -19,7 +19,7 @@ import org.springframework.session.web.http.DefaultCookieSerializer;
 @Configuration
 @EnableWebSecurity
 @EnableRedisHttpSession
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
