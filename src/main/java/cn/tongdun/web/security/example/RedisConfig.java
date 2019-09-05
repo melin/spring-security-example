@@ -90,10 +90,4 @@ public class RedisConfig {
         return new StringRedisSerializer();
     }
 
-    @Bean
-    public SessionRepository sessionRepository() throws Exception {
-        RedisOperationsSessionRepository sessionRepository = new RedisOperationsSessionRepository(redisTemplate());
-        return sessionRepository;
-    }
-
 }

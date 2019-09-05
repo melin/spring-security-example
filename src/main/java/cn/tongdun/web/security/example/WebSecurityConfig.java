@@ -62,7 +62,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
     @Bean
     public CookieSerializer cookieSerializer() {
         DefaultCookieSerializer serializer = new DefaultCookieSerializer();
-        serializer.setCookieName("TEST-SESSIONID");
+        serializer.setCookieName("TDSESSIONID");
         serializer.setCookiePath("/");
         serializer.setCookieMaxAge(604800);
         serializer.setDomainNamePattern("^.+?\\.(\\w+\\.[a-z]+)$");
